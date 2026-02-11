@@ -1,3 +1,4 @@
+import path from 'path';
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -6,7 +7,8 @@ import { authRouter } from './routes/auth';
 import { authMiddleware } from './middleware/auth';
 import { connectDatabase } from './database';
 
-dotenv.config();
+// Load .env from backend directory (so it works when run from project root via npm run dev)
+dotenv.config({ path: path.join(__dirname, '..', '.env') });
 
 const app = express();
 const PORT = process.env.PORT || 3001;
